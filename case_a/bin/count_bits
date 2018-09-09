@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/bit_counter'
+
+file_path = ARGV[0]
+
+unless file_path
+  return puts 'Please provide binary file path'
+end
+
+bit_counter = BitCounter::Parser.new(file_path)
+puts "found #{bit_counter.one_count} bits set to 1"
+puts "found #{bit_counter.zero_count} bits set to 0"

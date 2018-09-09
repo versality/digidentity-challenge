@@ -1,0 +1,7 @@
+<h3>Current balance: <%= current_user.account.balance %></h3>
+
+<%= form_for @transaction, url: { action: 'create' } do |f| %>
+  <%= collection_select nil, :user_id, @users, :id, :email %>
+  <%= f.number_field :amount, step: 0.1, minimum: 0.1 %>
+  <%= f.submit 'Transfer' %>
+<% end %>

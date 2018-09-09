@@ -1,0 +1,34 @@
+<div>
+  <%= link_to 'Transfer Money', new_transaction_path %>
+</div>
+
+<h2>Balance</h2>
+<%= current_user.account.balance %>
+<h4>Transactions</h4>
+
+<% @transactions.each do |transaction| %>
+  <div>
+    Time: <%= transaction.created_at %>
+  </div>
+
+  <div>
+    Type: <%= transaction.operation_type %>
+  </div>
+
+  <% if transaction.operation_type == :transfer %>
+    <div>
+      From: <%= transaction.account_sender.user.email %>
+    </div>
+  <% end %>
+
+  <div>
+    To: <%= transaction.account_recipient.user.email %>
+  </div>
+
+  <div>
+    Amount: <%= transaction.amount %>
+  </div>
+
+  <hr>
+<% end %>
+
